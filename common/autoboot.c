@@ -435,6 +435,10 @@ static void process_fdt_options(const void *blob)
 #endif /* CONFIG_SYS_TEXT_BASE */
 }
 
+#ifdef CONFIG_BOOTCOMMAND
+char licheervnano_bootcmd[] = CONFIG_BOOTCOMMAND;
+#endif
+
 const char *bootdelay_process(void)
 {
 	char *s;
@@ -464,6 +468,10 @@ const char *bootdelay_process(void)
 		s = env_get("altbootcmd");
 	else
 		s = env_get("bootcmd");
+
+	if (s == NULL) {
+		s = licheervnano_bootcmd;
+	}
 
 	if (IS_ENABLED(CONFIG_OF_CONTROL))
 		process_fdt_options(gd->fdt_blob);

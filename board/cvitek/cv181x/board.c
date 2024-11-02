@@ -70,7 +70,7 @@ void pinmux_config(int io_type)
 		break;
 		case PINMUX_SDIO0:
 			PINMUX_CONFIG(SD0_CD, SDIO0_CD);
-			PINMUX_CONFIG(SD0_PWR_EN, SDIO0_PWR_EN);
+			//PINMUX_CONFIG(SD0_PWR_EN, SDIO0_PWR_EN);
 			PINMUX_CONFIG(SD0_CMD, SDIO0_CMD);
 			PINMUX_CONFIG(SD0_CLK, SDIO0_CLK);
 			PINMUX_CONFIG(SD0_D0, SDIO0_D_0);
@@ -153,7 +153,11 @@ void pinmux_config(int io_type)
 	}
 }
 
+#ifdef CONFIG_LICHEERVNANO_BOARD_INIT
+#include "../licheervnano_board_init.c"
+#else
 #include "../cvi_board_init.c"
+#endif
 
 #if defined(CONFIG_PHY_CVITEK) /* config cvitek cv181x eth internal phy on ASIC board */
 static void cv181x_ephy_id_init(void)

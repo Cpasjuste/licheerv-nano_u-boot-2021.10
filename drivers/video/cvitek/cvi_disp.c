@@ -107,6 +107,7 @@ static int cvi_vo_probe(struct udevice *dev)
 
 	video_set_flush_dcache(dev, 1);
 
+	printf("cvitek vo probe over\n");
 	return ret;
 }
 

@@ -51,6 +51,14 @@ config CVITEK_SPI_FLASH
 	select CMD_SF
     select CVI_SPIF
 
+config CVITEK_SG2002_MEMMAP
+	bool
+	prompt "use sg2002 memmap"
+
+config LICHEERVNANO_BOARD_INIT
+	bool
+	prompt "licheervnano board init"
+
 config ENV_SIZE
     default 0x10000 if ENV_IS_IN_SPI_FLASH
     default 0x20000 if ENV_IS_IN_MMC

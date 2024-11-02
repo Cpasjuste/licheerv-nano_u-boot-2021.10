@@ -53,6 +53,9 @@ int i80_init(int devno, const struct _VO_I80_INSTR_S *cmds, int size)
 static int dsi_init(int devno, const struct dsc_instr *cmds, int size)
 {
 	int ret;
+	if (cmds == NULL) {
+		return 0;
+	}
 
 	for (int i = 0; i < size; i++) {
 		const struct dsc_instr *instr = &cmds[i];
@@ -156,7 +159,7 @@ static void dsi_panel_init(void)
 	u8 zero = panel_desc.hs_timing_cfg->zero;
 	u8 trail = panel_desc.hs_timing_cfg->trail;
 
-	debug("Init panel %s\n", panel_desc.panel_name);
+	printf("Init panel %s\n", panel_desc.panel_name);
 	mipi_tx_set_combo_dev_cfg(panel_desc.dev_cfg);
 	dsi_init(0, panel_desc.dsi_init_cmds, panel_desc.dsi_init_cmds_size);
 	dphy_set_hs_settle(prepare, zero, trail);

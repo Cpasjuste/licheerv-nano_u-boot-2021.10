@@ -20,14 +20,17 @@
 #undef CONFIG_ENV_SECT_SIZE
 
 /* cvi_board_memmap.h is generated from build/boards/{CHIP_ARCH}/{BOARD}/memmap.py */
-#include "cvi_board_memmap.h"
+//#include "cvi_board_memmap.h"
+#ifdef CONFIG_CVITEK_SG2002_MEMMAP
+#include "sg2002_memmap.h"
+#endif
 /* partition definitions header which is created by mkcvipart.py */
 /* please do not modify header manually */
 #include "cvipart.h"
 #include "cvi_panels/cvi_panel_diffs.h"
 
 // defined in this .h
-#undef CONFIG_BOOTCOMMAND
+//#undef CONFIG_BOOTCOMMAND
 
 #if defined(__aarch64__)
 #define CONFIG_ARMV8_SWITCH_TO_EL1
@@ -272,7 +275,9 @@
 
 	/* BOOTLOGO */
 	#ifdef CONFIG_BOOTLOGO
+		/*
 		#define SHOWLOGOCMD "run showlogo;"
+		*/
 
 		#ifdef CONFIG_NAND_SUPPORT
 			#define LOAD_LOGO "nand read " LOGO_READ_ADDR " MISC;"
@@ -332,7 +337,7 @@
 
 #else
 	/* define your environment */
-	#define CONFIG_BOOTCOMMAND ""
+	//#define CONFIG_BOOTCOMMAND ""
 
 #endif /* CONFIG_USE_DEFAULT_ENV */
 

@@ -115,6 +115,15 @@ static struct panel_desc_s panel_desc = {
 	.dsi_init_cmds = dsi_init_cmds_st7701_480x800,
 	.dsi_init_cmds_size = ARRAY_SIZE(dsi_init_cmds_st7701_480x800)
 };
+#elif defined(MIPI_PANEL_ST7701_HD228001C31)
+#include "dsi_st7701_hd228001c31.h"
+static struct panel_desc_s panel_desc = {
+	.panel_name = "ST7701-368x552",
+	.dev_cfg = &dev_cfg_st7701_368x552,
+	.hs_timing_cfg = &hs_timing_cfg_st7701_368x552,
+	.dsi_init_cmds = dsi_init_cmds_st7701_368x552,
+	.dsi_init_cmds_size = ARRAY_SIZE(dsi_init_cmds_st7701_368x552)
+};
 #elif defined(MIPI_PANEL_ST7785M)
 #include "dsi_st7785m.h"
 static struct panel_desc_s panel_desc = {
@@ -136,19 +145,37 @@ static struct panel_desc_s panel_desc = {
 static struct panel_desc_s panel_desc = {
 	.i80_hw_cfg = &st7789v3_cfg,
 };
+#elif defined(MIPI_PANEL_ZCT2133V1)
+#include "dsi_zct2133v1.h"
+static struct panel_desc_s panel_desc = {
+        .panel_name = "zct2133v1-800x1280",
+        .dev_cfg = &dev_cfg_zct2133v1_800x1280,
+        .hs_timing_cfg = &hs_timing_cfg_zct2133v1_800x1280,
+        .dsi_init_cmds = dsi_init_cmds_zct2133v1_800x1280,
+        .dsi_init_cmds_size = ARRAY_SIZE(dsi_init_cmds_zct2133v1_800x1280)
+};
+#elif defined(MIPI_PANEL_DUMMY)
+#include "dsi_dummy.h"
+static struct panel_desc_s panel_desc = {
+        .panel_name = "dummy-1920x1080",
+        .dev_cfg = &dev_cfg_dummy_1920x1080,
+        .hs_timing_cfg = &hs_timing_cfg_dummy_1920x1080,
+        .dsi_init_cmds = NULL,
+        .dsi_init_cmds_size = 0,
+};
 #elif defined(LVDS_PANEL_EK79202)
 #include "lvds_ek79202.h"
 static struct panel_desc_s panel_desc = {
 	.lvds_cfg = &lvds_ek79202_cfg
 };
 #else
-#include "dsi_hx8394_evb.h"
+#include "dsi_dummy.h"
 static struct panel_desc_s panel_desc = {
-	.panel_name = "HX8394-720x1280",
-	.dev_cfg = &dev_cfg_hx8394_720x1280,
-	.hs_timing_cfg = &hs_timing_cfg_hx8394_720x1280,
-	.dsi_init_cmds = dsi_init_cmds_hx8394_720x1280,
-	.dsi_init_cmds_size = ARRAY_SIZE(dsi_init_cmds_hx8394_720x1280)
+	.panel_name = "dummy-1920x1080",
+        .dev_cfg = &dev_cfg_dummy_1920x1080,
+        .hs_timing_cfg = &hs_timing_cfg_dummy_1920x1080,
+        .dsi_init_cmds = NULL,
+        .dsi_init_cmds_size = 0,
 };
 #endif
 
