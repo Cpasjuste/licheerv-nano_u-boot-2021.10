@@ -38,6 +38,7 @@
 	no-1-8-v;
 	no-mmc;
 	no-sdio;
+	max-frequency = <25000000>;
 };
 
 &uart0 {
